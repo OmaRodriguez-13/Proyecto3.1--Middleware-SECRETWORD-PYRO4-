@@ -19,6 +19,10 @@ class Interfaz:
                           font=("Courier New", 12))
         self.P.pack(pady=10)
 
+        # Etiqueta para mostrar los intentos fallidos
+        #self.label_intentos = tk.Label(self.root, text="Intentos fallidos: 0")
+        #self.label_intentos.pack(pady=10)
+
         self.scrollbar = tk.Scrollbar(self.root, width=13)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         self.text_area = scrolledtext.ScrolledText(self.root, wrap=tk.WORD, yscrollcommand=self.scrollbar.set, height=8, width=35)
@@ -50,23 +54,33 @@ class Interfaz:
         y = (self.root.winfo_screenheight() // 2) - (height // 2)
         self.root.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
+        self.usuario = None
 
     def adivinar(self):
         palabra = self.entry.get()
         resultado = self.juego.adivinar(palabra)
-        messagebox.showinfo("Resultado", resultado)
+        #self.label_intentos.config(text=f"Intentos fallidos: {self.juego.intentos_fallidos}")
+        if resultado.startswith("¡Felicidades"):
+            messagebox.showinfo("Resultado", resultado)
+            if self.usuario:
+                messagebox.showinfo("Ganaste!",f"El usuario {self.usuario} ha ganado")
+            self.root.destroy()
+        else:
+            messagebox.showwarning("Resultado", resultado)
 
+    def establecer_usuario(self, usuario):
+        self.usuario = usuario
 
     def iniciar(self):
         self.root.mainloop()
 
 
-user = simpledialog.askstring(
+#usuario
+usuario = simpledialog.askstring(
     "Username", "Ingrese su nombre de usuario:")
-if user is None:
+if usuario is None:
     # Si el usuario cancela el diálogo, salir del programa
     exit()
-
 server_ip = simpledialog.askstring(
     "Dirección IP del servidor", "Ingrese la dirección IP del servidor:")
 if server_ip is None:
@@ -86,5 +100,6 @@ print("URI del SERVIDOR", uri)
 messagebox.showinfo("Regla", "Introduce sólo minúsculas", icon="warning")
 
 interfaz = Interfaz(uri)
+interfaz.establecer_usuario(usuario)
 interfaz.iniciar()
 
