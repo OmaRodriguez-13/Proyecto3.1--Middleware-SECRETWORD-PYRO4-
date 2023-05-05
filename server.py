@@ -54,7 +54,7 @@ class JuegoAdivinarPalabra:
     def obtener_prin(cls):
         return cls.pistaPrin
     
-ip = Pyro4.socketutil.getInterfaceAddress("su_ip")
+ip = Pyro4.socketutil.getInterfaceAddress("su_ip") #cambiar a la ip del equipo que funcionará como servidor
 daemon = Pyro4.Daemon(host=ip)
 
 juego = JuegoAdivinarPalabra()

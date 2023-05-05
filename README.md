@@ -6,7 +6,7 @@
 
 Descargar el zip que contiene los archivos fuente del proyecto.
 
-### Via git 
+### Vía git 
 
 ```bash
 git clone https://github.com/OmaRodriguez-13/Proyecto3.1--Middleware-SECRETWORD-PYRO4-
@@ -35,7 +35,7 @@ ipconfig
 
 ### Servidor
 
-Ejecute [server.py] en línea de consola.
+Abra un terminal y ejecute [server.py] con alguno de los siguiente comandos:
 
 ```bash
 py server.py
@@ -49,7 +49,7 @@ El servidor devolverá la URI creada.
 
 ### Cliente
 
-Ejecute [client.py] en línea de consola.
+En otra terminal, ejecute [client.py] con alguno de los siguientes comandos:
 
 ```bash
 py client.py
@@ -60,4 +60,10 @@ python client.py
 ```
 
 En las ventanas siguientes deberá introducir la ip y el puerto del servidor, respectivamente.
+
+
+## Testeo
+
+
+
 
