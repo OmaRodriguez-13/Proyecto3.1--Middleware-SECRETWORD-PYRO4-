@@ -94,7 +94,7 @@ if server_ip is None:
     exit()
 
 server_port = simpledialog.askstring(
-    "Dirección IP del servidor", "Ingrese el puerto del servidor:")
+    "Puerto del servidor", "Ingrese el puerto del servidor:")
 if server_port is None:
     # Si el usuario cancela el diálogo, salir del programa
     exit()

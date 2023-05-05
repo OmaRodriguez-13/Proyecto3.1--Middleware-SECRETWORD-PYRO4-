@@ -1,4 +1,5 @@
 import Pyro4
+from Pyro4 import socketutil
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 
@@ -54,7 +55,7 @@ class JuegoAdivinarPalabra:
     def obtener_prin(cls):
         return cls.pistaPrin
     
-ip = Pyro4.socketutil.getInterfaceAddress("su_ip") #cambiar a la ip del equipo que funcionará como servidor
+ip = socketutil.getIpAddress('su_ip') #cambiar a la ip del equipo que funcionará como servidor
 daemon = Pyro4.Daemon(host=ip)
 
 juego = JuegoAdivinarPalabra()
