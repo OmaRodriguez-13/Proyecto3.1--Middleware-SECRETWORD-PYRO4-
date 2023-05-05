@@ -26,7 +26,8 @@ pip install pyro4
 
 ### Instrucciones de uso
 
-Cambie la linea 57 del archivo [server.py] por la ip de su equipo "servidor".
+Cambie la linea 58 del archivo [server.py] por la ip de su equipo "servidor".
+[![line58.png](https://i.postimg.cc/TPsVJVM5/line58.png)](https://postimg.cc/QBpKXWMj)
 
 ```bash
 ipconfig
