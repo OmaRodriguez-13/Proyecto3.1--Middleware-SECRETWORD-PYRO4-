@@ -47,6 +47,8 @@ python server.py
 
 El servidor devolverá la URI creada.
 
+[![server.png](https://i.postimg.cc/0QMJWNVx/server.png)](https://postimg.cc/TLxwhT8H)
+
 ### Cliente
 
 En otra terminal, ejecute [client.py] con alguno de los siguientes comandos:
