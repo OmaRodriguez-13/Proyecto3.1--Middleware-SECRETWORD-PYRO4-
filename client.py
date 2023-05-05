@@ -9,19 +9,14 @@ class Interfaz:
 
         self.root = tk.Tk()
         self.root.title("SECRET WORD!")
-        # self.root.iconbitmap('urna.ico')
-        self.root.geometry('390x300')
+        self.root.iconbitmap('secreto.ico')
+        self.root.geometry('420x340')
 
         # Hacer que la ventana no sea redimensionable
         self.root.resizable(False, False)
 
         self.P = tk.Label(self.root, text="Pista principal:",
                           font=("Courier New", 12))
-        self.P.pack(pady=10)
-
-        # Etiqueta para mostrar los intentos fallidos
-        #self.label_intentos = tk.Label(self.root, text="Intentos fallidos: 0")
-        #self.label_intentos.pack(pady=10)
 
         self.scrollbar = tk.Scrollbar(self.root, width=13)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -33,8 +28,8 @@ class Interfaz:
 
          # Obtener opciones y tema del servidor
         self.temav = self.juego.obtener_prin()
-        self.word = self.juego.obtener_palabra()
-        self.pista1 = self.juego.obtener_pistas()
+        #self.word = self.juego.obtener_palabra()
+        #self.pista1 = self.juego.obtener_pistas()
 
         # Establecer el contenido del ScrolledText
         self.text_area.insert(tk.INSERT, self.temav)
@@ -44,8 +39,14 @@ class Interfaz:
 
         self.entry = Entry(self.root, width=30)
         self.entry.pack()
+        self.entry.focus_set()
         self.button = Button(self.root, text="Adivinar", command=self.adivinar)
         self.button.pack(pady=10)
+        
+        self.labelR = tk.Label(self.root, text="Puedes reiniciar el juego en cualquier momento. Da click al siguiente botón")
+        self.labelR.pack(pady=10)
+        self.buttonR = Button(self.root, text="Volver a empezar", command=self.reiniciar)
+        self.buttonR.pack(pady=10)
 
         self.root.update_idletasks()
         width = self.root.winfo_width()
@@ -54,33 +55,38 @@ class Interfaz:
         y = (self.root.winfo_screenheight() // 2) - (height // 2)
         self.root.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
-        self.usuario = None
-
+    
+            
     def adivinar(self):
-        palabra = self.entry.get()
-        resultado = self.juego.adivinar(palabra)
-        #self.label_intentos.config(text=f"Intentos fallidos: {self.juego.intentos_fallidos}")
+        palabra = self.entry.get() #Toma el valor del textfield 
+        resultado = self.juego.adivinar(palabra) #Devuelve el método remoto "adivinar" del objeto juego
         if resultado.startswith("¡Felicidades"):
-            messagebox.showinfo("Resultado", resultado)
-            if self.usuario:
-                messagebox.showinfo("Ganaste!",f"El usuario {self.usuario} ha ganado")
+            messagebox.showinfo("Ganaste!", resultado)
             self.root.destroy()
+        elif resultado.startswith("Lo siento"):
+            # Si pierde, mostrar un cuadro de mensaje preguntando si desea reiniciar el juego.
+            respuesta = messagebox.askyesno("Perdiste", resultado + " ¿Quieres volver a jugar?")
+            self.entry.delete(0, END)
+            if respuesta:
+                # Si la respuesta es "sí", llamar al método "reiniciar_juego" del objeto "juego".
+                self.juego.reiniciar()
+                self.entry.delete(0, END)
+            else:
+                self.root.destroy()
         else:
             messagebox.showwarning("Resultado", resultado)
-
-    def establecer_usuario(self, usuario):
-        self.usuario = usuario
-
+            self.entry.delete(0, END)
+            
+    def reiniciar(self):
+        self.juego.reiniciar()
+        messagebox.showinfo("Juego reiniciado!", "Has reiniciado el juego y obtenido tus intentos nuevamente")
+        self.entry.delete(0, END)
+            
     def iniciar(self):
         self.root.mainloop()
 
 
-#usuario
-usuario = simpledialog.askstring(
-    "Username", "Ingrese su nombre de usuario:")
-if usuario is None:
-    # Si el usuario cancela el diálogo, salir del programa
-    exit()
+
 server_ip = simpledialog.askstring(
     "Dirección IP del servidor", "Ingrese la dirección IP del servidor:")
 if server_ip is None:
@@ -100,6 +106,5 @@ print("URI del SERVIDOR", uri)
 messagebox.showinfo("Regla", "Introduce sólo minúsculas", icon="warning")
 
 interfaz = Interfaz(uri)
-interfaz.establecer_usuario(usuario)
 interfaz.iniciar()
 
