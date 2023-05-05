@@ -16,7 +16,8 @@ git clone https://github.com/OmaRodriguez-13/Proyecto3.1--Middleware-SECRETWORD-
 
 ### Requerimientos
 
-### Editor de código (por ejemplo: [Visual Studio Code]
+#### **Importante: Conexión a la misma red.**
+#### Editor de código (por ejemplo: [Visual Studio Code]
 #### Python 3.11.2
 #### Pyro4:
 
