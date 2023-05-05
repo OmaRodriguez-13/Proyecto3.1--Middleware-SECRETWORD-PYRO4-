@@ -62,7 +62,9 @@ python client.py
 ```
 
 En las ventanas siguientes deberá introducir la ip y el puerto del servidor, respectivamente.
-
+[![ip.png](https://i.postimg.cc/CK9SJknZ/ip.png)](https://postimg.cc/cK7pLKmZ)
+[![port.png](https://i.postimg.cc/rskc2TJM/port.png)](https://postimg.cc/0Mch7LFB)
+[![client.png](https://i.postimg.cc/j5TksSGg/client.png)](https://postimg.cc/67Hhct6n)
 
 ## Testeo
 
