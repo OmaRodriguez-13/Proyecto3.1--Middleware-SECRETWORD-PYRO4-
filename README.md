@@ -16,9 +16,11 @@ git clone https://github.com/OmaRodriguez-13/Proyecto3.1--Middleware-SECRETWORD-
 
 ### Requerimientos
 
-#### **Importante: Conexión a la misma red.**
-#### Editor de código (por ejemplo: [Visual Studio Code]
-#### Python 3.11.2
+- Importante: Conexión a la misma red.
+- Desactivar Firewall de Windows para evitar cualquier error de conexión.
+- Editor de código (por ejemplo: [Visual Studio Code]).
+- Python 3.11.2
+
 #### Pyro4:
 
 ```bash
@@ -29,6 +31,8 @@ pip install pyro4
 
 Cambie la linea 58 del archivo [server.py] por la ip de su equipo "servidor".
 [![line58.png](https://i.postimg.cc/TPsVJVM5/line58.png)](https://postimg.cc/QBpKXWMj)
+
+Si no conoce su dirección ip de su equipo, puede usar el siguiente comando en cmd.
 
 ```bash
 ipconfig
